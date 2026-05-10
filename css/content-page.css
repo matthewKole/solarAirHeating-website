@@ -1,0 +1,1058 @@
+/* ── Page layout ─────────────────────────────────────────── */
+    .cp-wrap {
+      max-width: 110rem;
+      margin: 0 auto;
+      padding: 6rem 2rem 8rem;
+      display: grid;
+      grid-template-columns: 24rem 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+ 
+    /* ── Left: Table of Contents ─────────────────────────────── */
+    .cp-toc {
+      position: sticky;
+      top: 9rem; /* adjust if your nav height differs */
+    }
+ 
+    .cp-toc-label {
+      font-family: var(--sans);
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-semibold);
+      letter-spacing: var(--letter-spacing-wider);
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1.6rem;
+    }
+ 
+    .cp-toc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      border-left: 2px solid var(--gray-200);
+      padding-left: 0;
+    }
+ 
+    .cp-toc-list a {
+      display: block;
+      font-family: var(--sans);
+      font-size: var(--font-size-sm);
+      line-height: var(--line-height-normal);
+      color: var(--text-secondary);
+      text-decoration: none;
+      padding: 0.5rem 0 0.5rem 1.6rem;
+      border-left: 2px solid transparent;
+      margin-left: -2px;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+ 
+    .cp-toc-list a:hover {
+      color: var(--sky-dark);
+    }
+ 
+    /* Active link — toggled by JS scroll spy */
+    .cp-toc-list a.is-active {
+      color: var(--sky-dark);
+      border-left-color: var(--sky-dark);
+      font-weight: var(--font-weight-semibold);
+    }
+ 
+    /* ── Right: Content ──────────────────────────────────────── */
+    .cp-content {
+      min-width: 0; /* prevents grid blowout */
+    }
+ 
+    /* Page eyebrow */
+    .cp-eyebrow {
+      font-family: var(--sans);
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-semibold);
+      letter-spacing: var(--letter-spacing-wider);
+      text-transform: uppercase;
+      color: var(--sky-dark);
+      margin-top: 3rem;
+      margin-bottom: 1rem;
+    }
+ 
+    /* Page H1 */
+    .cp-title {
+      font-family: var(--serif);
+      font-size: clamp(3.2rem, 5vw, 5rem);
+      font-weight: var(--font-weight-semibold);
+      line-height: var(--line-height-tight);
+      color: var(--text-primary);
+      letter-spacing: var(--letter-spacing-tight);
+      margin-bottom: 1.6rem;
+    }
+ 
+    /* Subtitle / intro sentence under H1 */
+    .cp-subtitle {
+      font-family: var(--sans);
+      font-size: var(--font-size-lg);
+      line-height: var(--line-height-relaxed);
+      color: var(--text-secondary);
+      max-width: 70ch;
+      margin-bottom: 4rem;
+      padding-bottom: 4rem;
+      border-bottom: 1px solid var(--gray-200);
+    }
+ 
+    /* Section block (wrap each h2 + its content in one of these) */
+    .cp-section {
+      margin-bottom: 5rem;
+      scroll-margin-top: 11rem; /* offset for sticky nav */
+    }
+ 
+    /* Section H2 */
+    .cp-section h2 {
+      font-family: var(--serif);
+      font-size: var(--font-size-2xl);
+      font-weight: var(--font-weight-semibold);
+      color: var(--text-primary);
+      letter-spacing: var(--letter-spacing-tight);
+      margin-bottom: 1.6rem;
+    }
+ 
+    /* Body paragraphs */
+    .cp-section p {
+      font-family: var(--sans);
+      font-size: var(--font-size-base);
+      line-height: var(--line-height-loose);
+      color: var(--text-secondary);
+      max-width: 72ch;
+      margin-bottom: 1.6rem;
+    }
+ 
+    .cp-section p:last-child {
+      margin-bottom: 0;
+    }
+ 
+    /* Inline links */
+    .cp-section a {
+      color: var(--sky-dark);
+      text-decoration: underline;
+      text-underline-offset: 0.3em;
+      transition: color 0.2s ease;
+    }
+    .cp-section a:hover {
+      color: var(--sun);
+    }
+ 
+    /* ── Image + caption ─────────────────────────────────────── */
+    .cp-figure {
+      margin: 3rem 0;
+    }
+ 
+    .cp-figure img {
+      width: 100%;
+      border-radius: 1rem;
+      display: block;
+      box-shadow: 0 0.4rem 2rem rgba(15, 50, 70, 0.1);
+    }
+ 
+    .cp-figure figcaption {
+      margin-top: 1rem;
+      font-family: var(--sans);
+      font-size: var(--font-size-xs);
+      line-height: var(--line-height-normal);
+      color: var(--text-primary);
+      padding-left: 0.4rem;
+      border-left: 2px solid var(--gray-200);
+    }
+ 
+    /* Half-width image (floats inline with text) */
+    .cp-figure.cp-figure--half {
+      float: right;
+      width: 46%;
+      margin: 0.4rem 0 2rem 3rem;
+    }
+ 
+    /* Clear float after a section that has a half-image */
+    .cp-section::after {
+      content: '';
+      display: table;
+      clear: both;
+    }
+ 
+    /* ── Divider between sections ────────────────────────────── */
+    .cp-divider {
+      border: none;
+      border-top: 1px solid var(--gray-200);
+      margin: 0 0 5rem;
+    }
+ 
+    /* ── Responsive ──────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .cp-wrap {
+        grid-template-columns: 1fr;
+        gap: 3.2rem;
+      }
+      .cp-toc {
+        position: static;
+        border: 1px solid var(--gray-200);
+        border-radius: 1rem;
+        padding: 2rem;
+      }
+      .cp-figure.cp-figure--half {
+        float: none;
+        width: 100%;
+        margin: 2rem 0;
+      }
+    }
+
+    /* ── Additions for Introduction.html ────────────────────────────── */
+
+/* Benefit / feature list */
+.cp-benefit-list {
+  list-style: none;
+  margin: 1.6rem 0 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding-left: 0;
+}
+
+.cp-benefit-list > li {
+  font-family: var(--sans);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-loose);
+  color: var(--text-secondary);
+  padding-left: 1.8rem;
+  position: relative;
+}
+
+.cp-benefit-list > li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--sky-dark);
+  font-size: var(--font-size-sm);
+}
+
+/* Nested sub-list inside benefit list */
+.cp-benefit-list ul {
+  list-style: none;
+  margin-top: 0.4rem;
+  padding-left: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.cp-benefit-list ul li {
+  font-family: var(--sans);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-loose);
+  color: var(--text-secondary);
+  padding-left: 1.4rem;
+  position: relative;
+}
+
+.cp-benefit-list ul li::before {
+  content: '–';
+  position: absolute;
+  left: 0;
+  color: var(--text-muted);
+}
+
+/* Data table */
+.cp-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2.4rem 0;
+  font-family: var(--sans);
+  font-size: var(--font-size-sm);
+}
+
+.cp-table caption {
+  font-family: var(--sans);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-align: left;
+  margin-bottom: 1rem;
+  caption-side: top;
+  padding-bottom: 0.8rem;
+}
+
+.cp-table th {
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  text-align: left;
+  padding: 1rem 1.4rem;
+  border-bottom: 2px solid var(--gray-200);
+  background: var(--gray-50);
+}
+
+.cp-table td {
+  padding: 0.9rem 1.4rem;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.cp-table tbody tr:hover td {
+  background: var(--gray-50);
+}
+
+.cp-table-total td {
+  border-top: 2px solid var(--gray-200);
+  border-bottom: none;
+  background: var(--sky-lighter);
+}
+
+/* ── Additions for Introduction.html + SolarHeatingOptions.html ─── */
+
+/* Aside note block (e.g. patent / attribution notices) */
+.cp-note {
+  font-family: var(--sans);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-relaxed);
+  color: var(--text-secondary);
+  background: var(--gray-50);
+  border-left: 3px solid var(--sky-dark);
+  border-radius: 0 0.6rem 0.6rem 0;
+  padding: 1.2rem 1.6rem;
+  margin: 2rem 0;
+  max-width: 72ch;
+}
+
+
+/* Benefit / feature list */
+.cp-benefit-list {
+  list-style: none;
+  margin: 1.6rem 0 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding-left: 0;
+}
+
+.cp-benefit-list > li {
+  font-family: var(--sans);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-loose);
+  color: var(--text-secondary);
+  padding-left: 1.8rem;
+  position: relative;
+}
+
+.cp-benefit-list > li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--sky-dark);
+  font-size: var(--font-size-sm);
+}
+
+/* Nested sub-list inside benefit list */
+.cp-benefit-list ul {
+  list-style: none;
+  margin-top: 0.4rem;
+  padding-left: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.cp-benefit-list ul li {
+  font-family: var(--sans);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-loose);
+  color: var(--text-secondary);
+  padding-left: 1.4rem;
+  position: relative;
+}
+
+.cp-benefit-list ul li::before {
+  content: '–';
+  position: absolute;
+  left: 0;
+  color: var(--text-muted);
+}
+
+/* Data table */
+.cp-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2.4rem 0;
+  font-family: var(--sans);
+  font-size: var(--font-size-sm);
+}
+
+.cp-table caption {
+  font-family: var(--sans);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-align: left;
+  margin-bottom: 1rem;
+  caption-side: top;
+  padding-bottom: 0.8rem;
+}
+
+.cp-table th {
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  text-align: left;
+  padding: 1rem 1.4rem;
+  border-bottom: 2px solid var(--gray-200);
+  background: var(--gray-50);
+}
+
+.cp-table td {
+  padding: 0.9rem 1.4rem;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.cp-table tbody tr:hover td {
+  background: var(--gray-50);
+}
+
+.cp-table-total td {
+  border-top: 2px solid var(--gray-200);
+  border-bottom: none;
+  background: var(--sky-lighter);
+}
+
+/* ── Additions for Introduction.html, SolarHeatingOptions.html, SolarAirHeatingReports.html ─── */
+
+/* Aside note block (e.g. patent / attribution notices) */
+.cp-note {
+  font-family: var(--sans);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-relaxed);
+  color: var(--text-secondary);
+  background: var(--gray-50);
+  border-left: 3px solid var(--sky-dark);
+  border-radius: 0 0.6rem 0.6rem 0;
+  padding: 1.2rem 1.6rem;
+  margin: 2rem 0;
+  max-width: 72ch;
+}
+
+
+/* Benefit / feature list */
+.cp-benefit-list {
+  list-style: none;
+  margin: 1.6rem 0 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding-left: 0;
+}
+
+.cp-benefit-list > li {
+  font-family: var(--sans);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-loose);
+  color: var(--text-secondary);
+  padding-left: 1.8rem;
+  position: relative;
+}
+
+.cp-benefit-list > li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--sky-dark);
+  font-size: var(--font-size-sm);
+}
+
+/* Nested sub-list inside benefit list */
+.cp-benefit-list ul {
+  list-style: none;
+  margin-top: 0.4rem;
+  padding-left: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.cp-benefit-list ul li {
+  font-family: var(--sans);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-loose);
+  color: var(--text-secondary);
+  padding-left: 1.4rem;
+  position: relative;
+}
+
+.cp-benefit-list ul li::before {
+  content: '–';
+  position: absolute;
+  left: 0;
+  color: var(--text-muted);
+}
+
+/* Data table */
+.cp-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2.4rem 0;
+  font-family: var(--sans);
+  font-size: var(--font-size-sm);
+}
+
+.cp-table caption {
+  font-family: var(--sans);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-align: left;
+  margin-bottom: 1rem;
+  caption-side: top;
+  padding-bottom: 0.8rem;
+}
+
+.cp-table th {
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  text-align: left;
+  padding: 1rem 1.4rem;
+  border-bottom: 2px solid var(--gray-200);
+  background: var(--gray-50);
+}
+
+.cp-table td {
+  padding: 0.9rem 1.4rem;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.cp-table tbody tr:hover td {
+  background: var(--gray-50);
+}
+
+.cp-table-total td {
+  border-top: 2px solid var(--gray-200);
+  border-bottom: none;
+  background: var(--sky-lighter);
+}
+
+/* ── Report link list (SolarAirHeatingReports.html) ─────────────── */
+.cp-report-list {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.cp-report-list > li {
+  padding: 1.8rem 0;
+  border-bottom: 1px solid var(--gray-100);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.cp-report-list > li:first-child {
+  border-top: 1px solid var(--gray-100);
+}
+
+/* The report title link */
+.cp-report-link {
+  font-family: var(--sans);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--sky-dark);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  max-width: 68ch;
+  line-height: var(--line-height-normal);
+}
+
+.cp-report-link:hover {
+  color: var(--sun-dark);
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+}
+
+/* PDF / Article / Website badge */
+.cp-report-tag {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 1.1rem;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--sky-dark);
+  background: var(--sky-lighter);
+  border: 1px solid var(--skylight-blue-lighter);
+  border-radius: 0.4rem;
+  padding: 0.2rem 0.7rem;
+  align-self: flex-start;
+}
+
+/* Optional description line below the link */
+.cp-report-desc {
+  font-family: var(--sans);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-relaxed);
+  color: var(--text-secondary);
+  max-width: 68ch;
+  margin: 0;
+}
+
+/* Organisation external link (e.g. "Visit the DOE website →") */
+.cp-section > p > a[target="_blank"] {
+  font-family: var(--sans);
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.cp-section > p > a[target="_blank"]:hover {
+  color: var(--sky-dark);
+}
+
+/* ── Additions for Introduction.html, SolarHeatingOptions.html, SolarAirHeatingReports.html ─── */
+
+/* Aside note block (e.g. patent / attribution notices) */
+.cp-note {
+  font-family: var(--sans);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-relaxed);
+  color: var(--text-secondary);
+  background: var(--gray-50);
+  border-left: 3px solid var(--sky-dark);
+  border-radius: 0 0.6rem 0.6rem 0;
+  padding: 1.2rem 1.6rem;
+  margin: 2rem 0;
+  max-width: 72ch;
+}
+
+
+/* Benefit / feature list */
+.cp-benefit-list {
+  list-style: none;
+  margin: 1.6rem 0 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding-left: 0;
+}
+
+.cp-benefit-list > li {
+  font-family: var(--sans);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-loose);
+  color: var(--text-secondary);
+  padding-left: 1.8rem;
+  position: relative;
+}
+
+.cp-benefit-list > li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--sky-dark);
+  font-size: var(--font-size-sm);
+}
+
+/* Nested sub-list inside benefit list */
+.cp-benefit-list ul {
+  list-style: none;
+  margin-top: 0.4rem;
+  padding-left: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.cp-benefit-list ul li {
+  font-family: var(--sans);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-loose);
+  color: var(--text-secondary);
+  padding-left: 1.4rem;
+  position: relative;
+}
+
+.cp-benefit-list ul li::before {
+  content: '–';
+  position: absolute;
+  left: 0;
+  color: var(--text-muted);
+}
+
+/* Data table */
+.cp-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2.4rem 0;
+  font-family: var(--sans);
+  font-size: var(--font-size-sm);
+}
+
+.cp-table caption {
+  font-family: var(--sans);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-align: left;
+  margin-bottom: 1rem;
+  caption-side: top;
+  padding-bottom: 0.8rem;
+}
+
+.cp-table th {
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  text-align: left;
+  padding: 1rem 1.4rem;
+  border-bottom: 2px solid var(--gray-200);
+  background: var(--gray-50);
+}
+
+.cp-table td {
+  padding: 0.9rem 1.4rem;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.cp-table tbody tr:hover td {
+  background: var(--gray-50);
+}
+
+.cp-table-total td {
+  border-top: 2px solid var(--gray-200);
+  border-bottom: none;
+  background: var(--sky-lighter);
+}
+
+/* ── Report link list (SolarAirHeatingReports.html) ─────────────── */
+.cp-report-list {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.cp-report-list > li {
+  padding: 1.8rem 0;
+  border-bottom: 1px solid var(--gray-100);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.cp-report-list > li:first-child {
+  border-top: 1px solid var(--gray-100);
+}
+
+/* The report title link */
+.cp-report-link {
+  font-family: var(--sans);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--sky-dark);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  max-width: 68ch;
+  line-height: var(--line-height-normal);
+}
+
+.cp-report-link:hover {
+  color: var(--sun-dark);
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+}
+
+/* PDF / Article / Website badge */
+.cp-report-tag {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 1.1rem;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--sky-dark);
+  background: var(--sky-lighter);
+  border: 1px solid var(--skylight-blue-lighter);
+  border-radius: 0.4rem;
+  padding: 0.2rem 0.7rem;
+  align-self: flex-start;
+}
+
+/* Optional description line below the link */
+.cp-report-desc {
+  font-family: var(--sans);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-relaxed);
+  color: var(--text-secondary);
+  max-width: 68ch;
+  margin: 0;
+}
+
+/* Organisation external link (e.g. "Visit the DOE website →") */
+.cp-section > p > a[target="_blank"] {
+  font-family: var(--sans);
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.cp-section > p > a[target="_blank"]:hover {
+  color: var(--sky-dark);
+}
+
+/* ── News source attribution line (IndustryNews.html) ───────────── */
+.cp-news-source {
+  margin-bottom: 1.4rem;
+}
+
+.cp-news-source a {
+  font-family: var(--sans);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.cp-news-source a:hover {
+  color: var(--sky-dark);
+}
+
+/* ── Additions for Introduction.html, SolarHeatingOptions.html, SolarAirHeatingReports.html ─── */
+
+/* Aside note block (e.g. patent / attribution notices) */
+.cp-note {
+  font-family: var(--sans);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-relaxed);
+  color: var(--text-secondary);
+  background: var(--gray-50);
+  border-left: 3px solid var(--sky-dark);
+  border-radius: 0 0.6rem 0.6rem 0;
+  padding: 1.2rem 1.6rem;
+  margin: 2rem 0;
+  max-width: 72ch;
+}
+
+
+/* Benefit / feature list */
+.cp-benefit-list {
+  list-style: none;
+  margin: 1.6rem 0 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding-left: 0;
+}
+
+.cp-benefit-list > li {
+  font-family: var(--sans);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-loose);
+  color: var(--text-secondary);
+  padding-left: 1.8rem;
+  position: relative;
+}
+
+.cp-benefit-list > li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--sky-dark);
+  font-size: var(--font-size-sm);
+}
+
+/* Nested sub-list inside benefit list */
+.cp-benefit-list ul {
+  list-style: none;
+  margin-top: 0.4rem;
+  padding-left: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.cp-benefit-list ul li {
+  font-family: var(--sans);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-loose);
+  color: var(--text-secondary);
+  padding-left: 1.4rem;
+  position: relative;
+}
+
+.cp-benefit-list ul li::before {
+  content: '–';
+  position: absolute;
+  left: 0;
+  color: var(--text-muted);
+}
+
+/* Data table */
+.cp-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2.4rem 0;
+  font-family: var(--sans);
+  font-size: var(--font-size-sm);
+}
+
+.cp-table caption {
+  font-family: var(--sans);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-align: left;
+  margin-bottom: 1rem;
+  caption-side: top;
+  padding-bottom: 0.8rem;
+}
+
+.cp-table th {
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  text-align: left;
+  padding: 1rem 1.4rem;
+  border-bottom: 2px solid var(--gray-200);
+  background: var(--gray-50);
+}
+
+.cp-table td {
+  padding: 0.9rem 1.4rem;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.cp-table tbody tr:hover td {
+  background: var(--gray-50);
+}
+
+.cp-table-total td {
+  border-top: 2px solid var(--gray-200);
+  border-bottom: none;
+  background: var(--sky-lighter);
+}
+
+/* ── Report link list (SolarAirHeatingReports.html) ─────────────── */
+.cp-report-list {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.cp-report-list > li {
+  padding: 1.8rem 0;
+  border-bottom: 1px solid var(--gray-100);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.cp-report-list > li:first-child {
+  border-top: 1px solid var(--gray-100);
+}
+
+/* The report title link */
+.cp-report-link {
+  font-family: var(--sans);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--sky-dark);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  max-width: 68ch;
+  line-height: var(--line-height-normal);
+}
+
+.cp-report-link:hover {
+  color: var(--sun-dark);
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+}
+
+/* PDF / Article / Website badge */
+.cp-report-tag {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 1.1rem;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--sky-dark);
+  background: var(--sky-lighter);
+  border: 1px solid var(--skylight-blue-lighter);
+  border-radius: 0.4rem;
+  padding: 0.2rem 0.7rem;
+  align-self: flex-start;
+}
+
+/* Optional description line below the link */
+.cp-report-desc {
+  font-family: var(--sans);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-relaxed);
+  color: var(--text-secondary);
+  max-width: 68ch;
+  margin: 0;
+}
+
+/* Organisation external link (e.g. "Visit the DOE website →") */
+.cp-section > p > a[target="_blank"] {
+  font-family: var(--sans);
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.cp-section > p > a[target="_blank"]:hover {
+  color: var(--sky-dark);
+}
+
+/* ── News source attribution line (IndustryNews.html) ───────────── */
+.cp-news-source {
+  margin-bottom: 1.4rem;
+}
+
+.cp-news-source a {
+  font-family: var(--sans);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.cp-news-source a:hover {
+  color: var(--sky-dark);
+}
+
+/* ── Press release date stamp (PressReleases.html) ──────────────── */
+.cp-pr-meta {
+  font-family: var(--sans);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 1.6rem;
+}
