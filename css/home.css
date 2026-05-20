@@ -75,11 +75,11 @@
   justify-content: center;
 }
 
-.etp{
-  padding: 1.6rem 2.2rem;
+.etp {
+  padding: 1.4rem 2.8rem;
   color: var(--text-primary);
-  background: linear-gradient(135deg, var(--sun) 0%, var(--sunlight-yellow) 100%);
-  border-radius: 0.8rem;
+  background: var(--sun);
+  border-radius: 0.5rem;
   font-family: var(--sans);
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-semibold);
@@ -90,36 +90,31 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  border: none;
-  box-shadow: 0 0.8rem 2rem rgba(255, 223, 34, 0.25), 0 0.4rem 0.8rem rgba(0, 0, 0, 0.15);
-  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-  position: relative;
-  overflow: hidden;
+  border: 2px solid var(--sun);
+  box-shadow: none;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
-.etp::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%);
-  pointer-events: none;
-}
+.etp::before { content: none; }
 
-.etp:hover{
-  transform: translateY(-0.3rem);
-  box-shadow: 0 1.2rem 3rem rgba(255, 223, 34, 0.35), 0 0.6rem 1.2rem rgba(0, 0, 0, 0.2);
+.etp:hover {
+  background: var(--sun-bronze);
+  border-color: var(--sun-bronze);
+  transform: none;
+  box-shadow: none;
 }
 
 .etp:active {
-  transform: translateY(0);
-  box-shadow: 0 0.4rem 1rem rgba(255, 223, 34, 0.25), 0 0.2rem 0.4rem rgba(0, 0, 0, 0.15);
+  background: var(--sun-dark);
+  transform: none;
+  box-shadow: none;
 }
 
-.rtr{
-  padding: 1.6rem 2.2rem;
+.rtr {
+  padding: 1.4rem 2.8rem;
   color: var(--text-primary);
-  background: linear-gradient(135deg, var(--skylight-blue) 0%, var(--skylight-blue-muted) 100%);
-  border-radius: 0.8rem;
+  background: var(--skylight-blue);
+  border-radius: 0.5rem;
   font-family: var(--sans);
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-semibold);
@@ -130,31 +125,26 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  border: none;
-  box-shadow: 0 0.8rem 2rem rgba(132, 206, 235, 0.25), 0 0.4rem 0.8rem rgba(0, 0, 0, 0.15);
-  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-  position: relative;
-  overflow: hidden;
+  border: 2px solid var(--skylight-blue);
+  box-shadow: none;
+  transition: background 0.2s ease, border-color 0.2s ease;
 }
 
-.rtr::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%);
-  pointer-events: none;
-}
+.rtr::before { content: none; }
 
-.rtr:hover{
-  transform: translateY(-0.3rem);
-  box-shadow: 0 1.2rem 3rem rgba(132, 206, 235, 0.35), 0 0.6rem 1.2rem rgba(0, 0, 0, 0.2);
+.rtr:hover {
+  background: var(--skylight-blue-lighter);
+  border-color: var(--skylight-blue-lighter);
+  color: var(--text-primary);
+  transform: none;
+  box-shadow: none;
 }
 
 .rtr:active {
-  transform: translateY(0);
-  box-shadow: 0 0.4rem 1rem rgba(132, 206, 235, 0.25), 0 0.2rem 0.4rem rgba(0, 0, 0, 0.15);
+  background: var(--sky-dark);
+  transform: none;
+  box-shadow: none;
 }
-
 /* quick turotial of solar air heating */
 
 .wis {
