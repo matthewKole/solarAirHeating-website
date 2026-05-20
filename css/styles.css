@@ -179,7 +179,7 @@ nav {
 .nav-links a:hover { color: var(--sun); }
 .nav-links a:hover::after { width: 100%; }
 
-@media (max-width: 1290px) {
+@media (max-width: 953px) {
   .nav-toggle { display: flex; }
 
   .nav-links {
