@@ -145,7 +145,7 @@
     }
  
     .cp-figure img {
-      width: 100%;
+      width: 65%;
       border-radius: 1rem;
       display: block;
       box-shadow: 0 0.4rem 2rem rgba(15, 50, 70, 0.1);
@@ -164,8 +164,15 @@
     /* Half-width image (floats inline with text) */
     .cp-figure.cp-figure--half {
       float: right;
-      width: 46%;
+      width: 30%;
       margin: 0.4rem 0 2rem 3rem;
+    }
+
+    /* Small image */
+    .cp-figure.cp-figure--small {
+      float: left;
+      max-width: 20%;
+      margin: 0.4rem 2rem 2rem 0;
     }
  
     /* Clear float after a section that has a half-image */
