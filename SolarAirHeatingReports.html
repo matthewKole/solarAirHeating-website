@@ -15,6 +15,14 @@
     />
     <script src="javascript/script.js"></script>
     <script src="javascript/content-page.js" defer></script>
+
+    <!-- CSV parser used to read the published Google Sheet -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"
+      defer
+    ></script>
+    <!-- Fetches the sheet and renders the reports below -->
+    <script src="javascript/reports.js" defer></script>
   </head>
   <body>
     <!-- NAV -->
@@ -48,406 +56,34 @@
 
     <main>
       <div class="cp-wrap">
-        <!-- ── LEFT: Table of Contents ── -->
+        <!-- ── LEFT: Table of Contents (populated by reports.js) ── -->
         <aside class="cp-toc" aria-label="Page contents">
           <p class="cp-toc-label">On this page</p>
-          <ul class="cp-toc-list">
-            <li>
-              <a href="#solarairheating-reports"
-                >SolarAirHeating.org Technical Reports</a
-              >
-            </li>
-            <li><a href="#doe">U.S. Department of Energy</a></li>
-            <li><a href="#nrcan">Natural Resources Canada</a></li>
-            <li><a href="#cansia">Canadian Solar Industries Association</a></li>
-            <li><a href="#manitoba">Government of Manitoba</a></li>
-            <li><a href="#reed">Reed Construction Data</a></li>
-            <li><a href="#rew">RenewableEnergyWorld</a></li>
-            <li><a href="#air-force">Dept. of the Air Force / AFIT</a></li>
-            <li><a href="#conserval">Conserval Engineering</a></li>
-            <li><a href="#usda">U.S. Dept. of Agriculture</a></li>
+          <ul class="cp-toc-list" id="toc-list">
+            <li><a href="#">Loading reports…</a></li>
           </ul>
         </aside>
 
-        <!-- ── RIGHT: Content ── -->
+        <!-- ── RIGHT: Content (populated by reports.js) ── -->
         <article class="cp-content">
           <p class="cp-eyebrow">Research &amp; Reports</p>
           <h1 class="cp-title">Solar Air Heating Reports</h1>
-          <p class="cp-subtitle">
-            Last updated: 16 June 2026 &nbsp;|&nbsp; 3 min read
+          <p class="cp-subtitle" id="last-updated">Last updated: —</p>
+
+          <p class="reports-intro">
+            Here are links to studies and reports on solar heating specifically
+            solar air heating, or solar air heaters and solar collectors
           </p>
 
-          <!-- SECTION 1 -->
-          <section class="cp-section" id="solarairheating-reports">
-            <h2>SolarAirHeating.org Technical Reports</h2>
-            <ul class="cp-report-list">
-              <li>
-                <a
-                  class="cp-report-link"
-                  href="http://solarairheating.org/wp-content/uploads/2011/06/2013-05-13-NightSolar-white-paper.pdf"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  NightSolar – Winter Heating and Summer Cooling
-                </a>
-                <span class="cp-report-tag">PDF</span>
-                <p class="cp-report-desc">
-                  White paper on the NightSolar system for year-round thermal
-                  management.
-                </p>
-              </li>
-              <li>
-                <a
-                  class="cp-report-link"
-                  href="http://solarairheating.org/wp-content/uploads/2011/06/Analyzing-LUBI-Wall-design-Mar-2014.pdf"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  Analyzing Enerconcept's Glazed Transpired Solar Collector
-                  Design
-                </a>
-                <span class="cp-report-tag">PDF</span>
-              </li>
-            </ul>
-          </section>
-
-          <hr class="cp-divider" />
-
-          <!-- SECTION 2 -->
-          <section class="cp-section" id="doe">
-            <h2>U.S. Department of Energy</h2>
-            <p>
-              <a
-                href="http://www.eere.energy.gov/"
-                target="_blank"
-                rel="noopener"
-                >Visit the DOE website &rarr;</a
-              >
-            </p>
-            <ul class="cp-report-list">
-              <li>
-                <a
-                  class="cp-report-link"
-                  href="https://solarairheating.org/media/DOE%20-%20Transpired%20Solar%20Collectors.pdf"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  Transpired Solar Collectors
-                </a>
-                <span class="cp-report-tag">PDF</span>
-                <p class="cp-report-desc">
-                  DOE recommends the transpired solar collector for solar
-                  heating: "Transpired collectors provide the most reliable,
-                  best performing, and lowest cost solar heating for commercial
-                  and industrial buildings available on the market today."
-                </p>
-              </li>
-              <li>
-                <a
-                  class="cp-report-link"
-                  href="https://solarairheating.org/media/NREL%20Technology%20Brief.pdf"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  National Renewable Energy Labs (NREL) Technology Brief
-                </a>
-                <span class="cp-report-tag">PDF</span>
-                <p class="cp-report-desc">
-                  Solar heated fresh air cuts heating costs.
-                </p>
-              </li>
-            </ul>
-          </section>
-
-          <hr class="cp-divider" />
-
-          <!-- SECTION 3 -->
-          <section class="cp-section" id="nrcan">
-            <h2>Natural Resources Canada</h2>
-            <p>
-              <a
-                href="http://www.nrcan-rncan.gc.ca/com/index-eng.php"
-                target="_blank"
-                rel="noopener"
-                >Visit the NRCan website &rarr;</a
-              >
-            </p>
-            <ul class="cp-report-list">
-              <li>
-                <a
-                  class="cp-report-link"
-                  href="https://solarairheating.org/media/SOLAR-HeatingBuildingWithSolarEnergy.pdf"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  Heating your Building with Solar Energy – Efficient, Simple
-                  and Cost Effective
-                </a>
-                <span class="cp-report-tag">PDF</span>
-              </li>
-            </ul>
-          </section>
-
-          <hr class="cp-divider" />
-
-          <!-- SECTION 4 -->
-          <section class="cp-section" id="cansia">
-            <h2>The Canadian Solar Industries Association</h2>
-            <p>
-              <a href="http://www.cansia.ca/" target="_blank" rel="noopener"
-                >Visit the CanSIA website &rarr;</a
-              >
-            </p>
-            <ul class="cp-report-list">
-              <li>
-                <a
-                  class="cp-report-link"
-                  href="https://solarairheating.org/media/12.pdf"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  Heating your Home with Solar Air
-                </a>
-                <span class="cp-report-tag">PDF</span>
-                <p class="cp-report-desc">
-                  Solar thermal air heating for residential applications, costs,
-                  and design.
-                </p>
-              </li>
-              <li>
-                <a
-                  class="cp-report-link"
-                  href="https://solarairheating.org/media/13.pdf"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  Solar Air Heating in Industrial Facilities
-                </a>
-                <span class="cp-report-tag">PDF</span>
-                <p class="cp-report-desc">
-                  Applications in ICI facilities, financial impact, and
-                  incentives.
-                </p>
-              </li>
-              <li>
-                <a
-                  class="cp-report-link"
-                  href="https://solarairheating.org/media/15.pdf"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  Designing a Solar Air Heating System
-                </a>
-                <span class="cp-report-tag">PDF</span>
-                <p class="cp-report-desc">
-                  Perforated plate collectors and design considerations.
-                </p>
-              </li>
-              <li>
-                <a
-                  class="cp-report-link"
-                  href="https://solarairheating.org/media/16.pdf"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  Savings from Heating with Solar Air
-                </a>
-                <span class="cp-report-tag">PDF</span>
-                <p class="cp-report-desc">
-                  Typical costs, rates of return, savings, and incentives.
-                </p>
-              </li>
-            </ul>
-          </section>
-
-          <hr class="cp-divider" />
-
-          <!-- SECTION 5 -->
-          <section class="cp-section" id="manitoba">
-            <h2>Government of Manitoba</h2>
-            <p>
-              <a
-                href="http://www.manitoba.ca/iem/energy/initiatives/solar.html"
-                target="_blank"
-                rel="noopener"
-                >Visit the Manitoba energy initiatives page &rarr;</a
-              >
-            </p>
-            <ul class="cp-report-list">
-              <li>
-                <a
-                  class="cp-report-link"
-                  href="http://www.manitoba.ca/iem/energy/initiatives/pdf/solarheating.pdf"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  Solar Heating Systems in Manitoba
-                </a>
-                <span class="cp-report-tag">PDF</span>
-              </li>
-            </ul>
-          </section>
-
-          <hr class="cp-divider" />
-
-          <!-- SECTION 6 -->
-          <section class="cp-section" id="reed">
-            <h2>Reed Construction Data</h2>
-            <p>
-              <a
-                href="http://www.reedconstructiondata.com/"
-                target="_blank"
-                rel="noopener"
-                >Visit the Reed Construction Data website &rarr;</a
-              >
-            </p>
-            <ul class="cp-report-list">
-              <li>
-                <a
-                  class="cp-report-link"
-                  href="http://www.reedconstructiondata.com/articles/read/solar-ventilation-air-heating/"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  An Overview of Solar Ventilation Air Heating
-                </a>
-                <span class="cp-report-tag">Website</span>
-              </li>
-            </ul>
-          </section>
-
-          <hr class="cp-divider" />
-
-          <!-- SECTION 7 -->
-          <section class="cp-section" id="rew">
-            <h2>RenewableEnergyWorld</h2>
-            <p>
-              <a
-                href="http://www.renewableenergyworld.com/rea/home"
-                target="_blank"
-                rel="noopener"
-                >Visit RenewableEnergyWorld &rarr;</a
-              >
-            </p>
-            <ul class="cp-report-list">
-              <li>
-                <a
-                  class="cp-report-link"
-                  href="http://www.renewableenergyworld.com/rea/news/print/article/2009/07/the-biggest-co2-bang-for-the-buck"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  The Biggest CO<sub>2</sub> Bang for the Buck
-                </a>
-                <span class="cp-report-tag">Article</span>
-                <p class="cp-report-desc">
-                  A landmark study on the true cost to taxpayers of the most
-                  common "green" initiatives, released by the C.D. Howe
-                  Institute in Canada.
-                </p>
-              </li>
-            </ul>
-          </section>
-
-          <hr class="cp-divider" />
-
-          <!-- SECTION 8 -->
-          <section class="cp-section" id="air-force">
-            <h2>
-              Department of the Air Force Air University – Air Force Institute
-              of Technology
-            </h2>
-            <ul class="cp-report-list">
-              <li>
-                <a
-                  class="cp-report-link"
-                  href="https://solarairheating.org/media/AN_EVALUATION_OF_SOLAR_AIR_HEATING_AT_UNITED_STATES_AIR_FORCE_INSTALLATIONS.PDF"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  An Evaluation of Solar Air Heating at United States Air Force
-                  Installations
-                </a>
-                <span class="cp-report-tag">PDF</span>
-                <p class="cp-report-desc">
-                  Thesis by David S. Brown, Captain, USAF — AFIT/GCA/ENV/09-M03.
-                </p>
-              </li>
-            </ul>
-          </section>
-
-          <hr class="cp-divider" />
-
-          <!-- SECTION 9 -->
-          <section class="cp-section" id="conserval">
-            <h2>Conserval Engineering</h2>
-            <p>
-              <a href="http://www.solarwall.com/" target="_blank" rel="noopener"
-                >Visit the SolarWall website &rarr;</a
-              >
-            </p>
-            <ul class="cp-report-list">
-              <li>
-                <a
-                  class="cp-report-link"
-                  href="http://solarwall.com/en/products/solarwall-air-heating/solarwall-flash-overview.php"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  Solar Air Heating – Transpired Solar Collector Overview
-                </a>
-                <span class="cp-report-tag">Presentation</span>
-                <p class="cp-report-desc">
-                  An overview of solar air heating and how the award-winning
-                  transpired solar collector technology can be used on new and
-                  existing buildings to substantially reduce heating costs and
-                  shrink CO<sub>2</sub> emissions.
-                </p>
-              </li>
-            </ul>
-          </section>
-
-          <hr class="cp-divider" />
-
-          <!-- SECTION 10 -->
-          <section class="cp-section" id="usda">
-            <h2>United States Department of Agriculture</h2>
-            <p>
-              <a
-                href="http://www.usda.gov/oce/reports/energy/index.htm"
-                target="_blank"
-                rel="noopener"
-                >Visit the USDA energy reports page &rarr;</a
-              >
-            </p>
-            <ul class="cp-report-list">
-              <li>
-                <a
-                  class="cp-report-link"
-                  href="http://www.usda.gov/oce/reports/energy/Web_SolarEnergy_combined.pdf"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  USDA – Solar Energy Use in U.S. Agriculture: Overview and
-                  Public Policy Issues
-                </a>
-                <span class="cp-report-tag">PDF</span>
-                <p class="cp-report-desc">
-                  Published April 2011 by the USDA Office of the Chief
-                  Economist, Office of Energy Policy and New Uses. Authors:
-                  Irene M. Xiarchos, Natural Resource Economist and Policy
-                  Analyst; and Brian Vick, Lead Scientist of the Renewable
-                  Energy group at the Conservation and Production Research Lab
-                  of the Agricultural Research Service, USDA.
-                </p>
-              </li>
-            </ul>
-          </section>
+          <div id="news-sections">
+            <p>Loading reports…</p>
+          </div>
         </article>
       </div>
     </main>
 
     <!-- footer -->
+
     <footer class="site-footer">
       <div class="footer-inner">
         <div class="footer-top">
@@ -461,9 +97,9 @@
               <span class="footer-brand-name">Solar Air Heating</span>
             </a>
             <p class="footer-tagline">
-              A resource dedicated to raising awareness of solar air heating —
-              one of the most practical and underused renewable energy
-              technologies available today.
+              A resource dedicated to raising awareness of solar air heating one
+              of the most practical and underused renewable energy technologies
+              available today.
             </p>
           </div>
 
@@ -489,17 +125,9 @@
           <!-- Contact / Contribute -->
           <div>
             <p class="footer-col-heading">Get Involved</p>
-            <p class="footer-contact">
-              Know of a project, report, or installation worth featuring?
-            </p>
-            <p class="footer-contact">
-              <a href="mailto:contact@yourdomain.com"
-                >Submit a contribution &rarr;</a
-              >
-            </p>
             <p class="footer-contact" style="margin-top: 2rem">
-              Follow updates or share this resource with anyone working in
-              sustainable building design.
+              Share this resource with anyone working in sustainable building
+              design.
             </p>
           </div>
 
@@ -513,16 +141,25 @@
                 >
               </li>
               <li><a href="https://sahwia.org/">SAHWIA.org</a></li>
+              <li>
+                <a
+                  href="https://www.cagroup.co.uk/building-products/renewables-sustainable-solutions/transpired-solar-wall-collector-heating-system"
+                  >The CA Group Ltd. (UK)</a
+                >
+              </li>
             </ul>
           </div>
         </div>
+        <!-- /.footer-top -->
 
         <div class="footer-bottom">
           <p class="footer-copy">
-            &copy; 2025 Solar Air Heating. All rights reserved.
+            <!-- REPLACE year and name as needed -->
+            &copy; 2026 Solar Air Heating. All rights reserved.
           </p>
         </div>
       </div>
+      <!-- /.footer-inner -->
     </footer>
   </body>
 </html>

@@ -15,6 +15,14 @@
     />
     <script src="javascript/script.js"></script>
     <script src="javascript/content-page.js" defer></script>
+
+    <!-- CSV parser used to read the published Google Sheet -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"
+      defer
+    ></script>
+    <!-- Fetches the sheet and renders the news sections below -->
+    <script src="javascript/industry-news.js" defer></script>
   </head>
   <body>
     <!-- NAV -->
@@ -48,111 +56,29 @@
 
     <main>
       <div class="cp-wrap">
-        <!-- ── LEFT: Table of Contents ── -->
+        <!-- ── LEFT: Table of Contents (populated by industry-news.js) ── -->
         <aside class="cp-toc" aria-label="Page contents">
           <p class="cp-toc-label">On this page</p>
-          <ul class="cp-toc-list">
-            <li>
-              <a href="#metal-architecture"
-                >MetalArchitecture.com – Technology Spotlight</a
-              >
-            </li>
-            <li><a href="#csa-cancels">CSA Cancels Verification Program</a></li>
-            <li>
-              <a href="#europe-renewable"
-                >Europe and the 20% Renewable Energy Target</a
-              >
-            </li>
+          <ul class="cp-toc-list" id="toc-list">
+            <li><a href="#">Loading articles…</a></li>
           </ul>
         </aside>
 
-        <!-- ── RIGHT: Content ── -->
+        <!-- ── RIGHT: Content (populated by industry-news.js) ── -->
         <article class="cp-content">
           <p class="cp-eyebrow">Industry News</p>
           <h1 class="cp-title">Industry News</h1>
-          <p class="cp-subtitle">
-            Last updated: 16 June 2026 &nbsp;|&nbsp; 2 min read
-          </p>
+          <p class="cp-subtitle" id="last-updated">Last updated: —</p>
 
-          <!-- SECTION 1 -->
-          <section class="cp-section" id="metal-architecture">
-            <h2>
-              MetalArchitecture.com – Technology Spotlight – Solar Air Heating
-            </h2>
-            <p class="cp-news-source">
-              <a
-                href="http://www.metalarchitecture.com/articles/columns/technology-spotlight.aspx"
-                target="_blank"
-                rel="noopener"
-                >Read the full article at MetalArchitecture.com &rarr;</a
-              >
-            </p>
-            <p>
-              Mention solar energy, and the first thought that comes to mind are
-              box-like electricity generating panels attached to the roof of a
-              building, that proclaim their existence with their modular nature
-              and distinctive appearance. But according to new data released by
-              the Solar Energy Industries Association (SEIA), a growing sector
-              of the solar heating industry has reached a major milestone, with
-              5 million square feet of building-integrated solar air heating
-              collectors now installed in North America. SEIA President and CEO
-              Rhone Resch says these systems represent 250 megawatts (MW) of
-              thermal energy and displace nearly 100,000 tons of CO<sub>2</sub>
-              each year from the atmosphere.
-            </p>
-          </section>
-
-          <hr class="cp-divider" />
-
-          <!-- SECTION 2 -->
-          <section class="cp-section" id="csa-cancels">
-            <h2>
-              CSA Cancels Verification Program for Solar Thermal Collectors
-            </h2>
-            <p class="cp-news-source">
-              <a
-                href="http://solarairheating.org/wp-content/uploads/2011/06/PlumbingProducts250.pdf"
-                target="_blank"
-                rel="noopener"
-                >Read the full article [PDF] &rarr;</a
-              >
-            </p>
-            <p>
-              SRCC and the Solar A Mark by SAHWIA will continue to be used for
-              Solar Air Collectors Certification &amp; Verification.
-            </p>
-          </section>
-
-          <hr class="cp-divider" />
-
-          <!-- SECTION 3 -->
-          <section class="cp-section" id="europe-renewable">
-            <h2>Europe Will Not Meet 20% Renewable Energy Target by 2020</h2>
-            <p class="cp-news-source">
-              <a
-                href="http://www.renewableenergyworld.com/rea/news/article/2011/10/europe-will-not-meet-20-renewable-energy-target-by-2020"
-                target="_blank"
-                rel="noopener"
-                >Read the full article at RenewableEnergyWorld &rarr;</a
-              >
-            </p>
-            <p>
-              In the world of politics and policy decisions, small individual
-              decisions can often produce large collective consequences. In an
-              unfortunate turn of events, this is becoming exceedingly clear in
-              terms of the energy policy originating from Brussels. It began
-              with a technical error in terms of how solar energy was defined by
-              the European Parliament; and now the collective consequence to the
-              rest of the EU Nations may be that they will not be able to meet
-              their obligations to supply 20 percent of their energy from
-              renewables by 2020, as a result of this error.
-            </p>
-          </section>
+          <div id="news-sections">
+            <p>Loading the latest news…</p>
+          </div>
         </article>
       </div>
     </main>
 
     <!-- footer -->
+
     <footer class="site-footer">
       <div class="footer-inner">
         <div class="footer-top">
@@ -166,9 +92,9 @@
               <span class="footer-brand-name">Solar Air Heating</span>
             </a>
             <p class="footer-tagline">
-              A resource dedicated to raising awareness of solar air heating —
-              one of the most practical and underused renewable energy
-              technologies available today.
+              A resource dedicated to raising awareness of solar air heating one
+              of the most practical and underused renewable energy technologies
+              available today.
             </p>
           </div>
 
@@ -194,17 +120,9 @@
           <!-- Contact / Contribute -->
           <div>
             <p class="footer-col-heading">Get Involved</p>
-            <p class="footer-contact">
-              Know of a project, report, or installation worth featuring?
-            </p>
-            <p class="footer-contact">
-              <a href="mailto:contact@yourdomain.com"
-                >Submit a contribution &rarr;</a
-              >
-            </p>
             <p class="footer-contact" style="margin-top: 2rem">
-              Follow updates or share this resource with anyone working in
-              sustainable building design.
+              Share this resource with anyone working in sustainable building
+              design.
             </p>
           </div>
 
@@ -218,16 +136,25 @@
                 >
               </li>
               <li><a href="https://sahwia.org/">SAHWIA.org</a></li>
+              <li>
+                <a
+                  href="https://www.cagroup.co.uk/building-products/renewables-sustainable-solutions/transpired-solar-wall-collector-heating-system"
+                  >The CA Group Ltd. (UK)</a
+                >
+              </li>
             </ul>
           </div>
         </div>
+        <!-- /.footer-top -->
 
         <div class="footer-bottom">
           <p class="footer-copy">
-            &copy; 2025 Solar Air Heating. All rights reserved.
+            <!-- REPLACE year and name as needed -->
+            &copy; 2026 Solar Air Heating. All rights reserved.
           </p>
         </div>
       </div>
+      <!-- /.footer-inner -->
     </footer>
   </body>
 </html>

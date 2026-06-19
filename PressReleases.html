@@ -15,6 +15,14 @@
     />
     <script src="javascript/script.js"></script>
     <script src="javascript/content-page.js" defer></script>
+
+    <!-- CSV parser used to read the published Google Sheet -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"
+      defer
+    ></script>
+    <!-- Fetches the sheet and renders the press releases below -->
+    <script src="javascript/press-releases.js" defer></script>
   </head>
   <body>
     <!-- NAV -->
@@ -48,254 +56,29 @@
 
     <main>
       <div class="cp-wrap">
-        <!-- ── LEFT: Table of Contents ── -->
+        <!-- ── LEFT: Table of Contents (populated by press-releases.js) ── -->
         <aside class="cp-toc" aria-label="Page contents">
           <p class="cp-toc-label">On this page</p>
-          <ul class="cp-toc-list">
-            <li>
-              <a href="#milestone"
-                >Building-Integrated Solar Air Heating Systems Hit Milestone</a
-              >
-            </li>
-            <li>
-              <a href="#smart-union"
-                >Major International Labor Union Joins SAHWIA</a
-              >
-            </li>
-            <li>
-              <a href="#executive-director"
-                >SAHWIA Appoints Executive Director</a
-              >
-            </li>
-            <li>
-              <a href="#canada-strongest"
-                >Canada: Solar Air Heating is Strongest Sector</a
-              >
-            </li>
-            <li>
-              <a href="#csa-standard"
-                >Canada Releases World's First Test Standard for Unglazed Solar
-                Air Collectors</a
-              >
-            </li>
-            <li>
-              <a href="#europe-target"
-                >Europe Will Not Meet 20% Renewable Energy Target by 2020</a
-              >
-            </li>
-            <li>
-              <a href="#bombardier"
-                >Bombardier Installs Solar Air Heating System</a
-              >
-            </li>
-            <li>
-              <a href="#toyota"
-                >Toyota Motor Manufacturing France Installs SolarWall System</a
-              >
-            </li>
-            <li>
-              <a href="#ca-group"
-                >CA Group to Install Europe's Largest SolarWall System</a
-              >
-            </li>
+          <ul class="cp-toc-list" id="toc-list">
+            <li><a href="#">Loading press releases…</a></li>
           </ul>
         </aside>
 
-        <!-- ── RIGHT: Content ── -->
+        <!-- ── RIGHT: Content (populated by press-releases.js) ── -->
         <article class="cp-content">
           <p class="cp-eyebrow">Press Releases</p>
           <h1 class="cp-title">Press Releases</h1>
-          <p class="cp-subtitle">
-            Last updated: 16 June 2026 &nbsp;|&nbsp; 4 min read
-          </p>
+          <p class="cp-subtitle" id="last-updated">Last updated: —</p>
 
-          <!-- PRESS RELEASE 1 -->
-          <section class="cp-section" id="milestone">
-            <h2>Building-Integrated Solar Air Heating Systems Hit Milestone</h2>
-            <p class="cp-pr-meta">April 18, 2014</p>
-            <p>
-              WASHINGTON, DC – According to data released today by the Solar
-              Energy Industries Association (SEIA), a growing sector of the
-              industry has reached a major milestone, with 5 million square feet
-              of building-integrated solar air heating collectors now installed
-              in North America.
-            </p>
-            <p>
-              SEIA President and CEO Rhone Resch says these systems represent
-              250 megawatts (MW) of thermal energy and displace nearly 100,000
-              tons of CO<sub>2</sub> each year from the atmosphere.
-            </p>
-          </section>
-
-          <hr class="cp-divider" />
-
-          <!-- PRESS RELEASE 2 -->
-          <section class="cp-section" id="smart-union">
-            <h2>
-              Major International Labor Union Joins SAHWIA to Help Promote Solar
-              Air Heating
-            </h2>
-            <p class="cp-pr-meta">September 17, 2013</p>
-            <p>
-              September 16, 2013: As solar continues to be a "hot" growth
-              industry in the United States and other parts of the world, the
-              International Association of Sheet Metal, Air, Rail and
-              Transportation Workers (SMART) is feeling especially buoyant about
-              the growth potential for its members from increased use of solar
-              air heating. To lend support to the industry, they have become
-              members of the Solar Air Heating World Industries Association
-              (SAHWIA) and will provide assistance to help promote the use of
-              solar air heating, which will create installation work for their
-              members.
-            </p>
-          </section>
-
-          <hr class="cp-divider" />
-
-          <!-- PRESS RELEASE 3 -->
-          <section class="cp-section" id="executive-director">
-            <h2>
-              Solar Air Heating World Industries Association Appoints Executive
-              Director
-            </h2>
-            <p class="cp-pr-meta">July 27, 2012</p>
-            <p>
-              Madrid, Spain: July 27, 2012 – The Solar Air Heating World
-              Industries Association (SAHWIA) is pleased to announce the
-              appointment of Cecile Tabarot to the position of Executive
-              Director effective June 1st. Ms. Tabarot will direct SAHWIA's
-              efforts from the new European office in Madrid, Spain.
-            </p>
-          </section>
-
-          <hr class="cp-divider" />
-
-          <!-- PRESS RELEASE 4 -->
-          <section class="cp-section" id="canada-strongest">
-            <h2>Canada: Solar Air Heating is Strongest Sector</h2>
-            <p class="cp-pr-meta">November 15, 2011</p>
-            <p>
-              2010 was a good year for the solar thermal industry in Canada. The
-              total newly installed collector area grew by 54%, from 129,418 to
-              199,491 m<sup>2</sup>. Air collector sales doubled and — for the
-              first time — overtook the solar swimming pool market, which is
-              more or less stagnating. With 150%, the segment of glazed solar
-              water collectors experienced the highest growth, although the
-              20,000 m<sup>2</sup> sold in 2010 makes it still a low-level
-              market.
-            </p>
-            <p class="cp-news-source">
-              Source: NRCan.
-              <a
-                href="https://www.solarthermalworld.org/"
-                target="_blank"
-                rel="noopener"
-                >View the full article on SolarThermalWorld &rarr;</a
-              >
-            </p>
-          </section>
-
-          <hr class="cp-divider" />
-
-          <!-- PRESS RELEASE 5 -->
-          <section class="cp-section" id="csa-standard">
-            <h2>
-              Canada Releases World's First Test Standard for Unglazed Ambient
-              Solar Air Collectors
-            </h2>
-            <p class="cp-pr-meta">October 7, 2011</p>
-            <p>
-              Canadian Standards Association released in September 2011 an
-              updated edition of the CSA F378 Series, Solar Collectors, which
-              replaces the previous edition of CSA F378, Solar Collectors,
-              published in 1987.
-            </p>
-            <p>The new test standard currently has two sections:</p>
-            <ul class="cp-benefit-list">
-              <li>
-                F378.1, Glazed and unglazed liquid heating solar collectors
-              </li>
-              <li>F378.2, Air heating solar collectors</li>
-            </ul>
-          </section>
-
-          <hr class="cp-divider" />
-
-          <!-- PRESS RELEASE 6 -->
-          <section class="cp-section" id="europe-target">
-            <h2>Europe Will Not Meet 20% Renewable Energy Target by 2020</h2>
-            <p class="cp-pr-meta">July 27, 2011</p>
-            <p>
-              Europe will not be able to meet its obligation to supply 20% of
-              its energy from renewable energy by 2020, states John Hollick, CEO
-              of SolarWall Europe, Sarl. and Chairman of the Solar Air Heating
-              World Industries Association (SAHWIA), due to an error in
-              definition made by the European Parliament.
-            </p>
-          </section>
-
-          <hr class="cp-divider" />
-
-          <!-- PRESS RELEASE 7 -->
-          <section class="cp-section" id="bombardier">
-            <h2>
-              Bombardier Installs Solar Air Heating System as Part of Green
-              Mission
-            </h2>
-            <p class="cp-pr-meta">June 29, 2011</p>
-            <p>
-              Wednesday, June 29, 2011 – Bombardier Inc. has been a corporate
-              role model of energy efficiency for years, but recently the
-              world's third largest aircraft manufacturer took initial steps
-              toward more green technology by using a solar energy retrofit to
-              preheat outdoor air at its Mirabel, Quebec industrial building.
-            </p>
-          </section>
-
-          <hr class="cp-divider" />
-
-          <!-- PRESS RELEASE 8 -->
-          <section class="cp-section" id="toyota">
-            <h2>Toyota Motor Manufacturing France Installs SolarWall System</h2>
-            <p class="cp-pr-meta">June 22, 2011</p>
-            <p>
-              Valenciennes, France: June 22, 2011 — Toyota Motor Manufacturing
-              France (TMMF) has inaugurated a SolarWall® installation at its
-              facility in Valenciennes, France which produces the Yaris (Vitz)
-              for Europe. The SolarWall® technology is a solar air heating
-              system that uses the sun's energy to heat ventilation air for
-              commercial and industrial buildings. It substantially reduces
-              traditional heating fuel expenses and GHG emissions. This
-              technology, developed by Conserval Engineering, will help TMMF
-              with their commitment to deploy renewable energy to reduce CO<sub
-                >2</sub
-              >
-              emissions.
-            </p>
-          </section>
-
-          <hr class="cp-divider" />
-
-          <!-- PRESS RELEASE 9 -->
-          <section class="cp-section" id="ca-group">
-            <h2>CA Group to Install Europe's Largest SolarWall System</h2>
-            <p class="cp-pr-meta">June 2, 2011</p>
-            <p>
-              June 2, 2011 – Leading metal roofing and cladding system
-              manufacturer and installer, CA Group, has been awarded the
-              contract to supply and install the latest 80,000 m<sup>2</sup>
-              distribution centre for a high street retail giant, in Castle
-              Donnington. The development will incorporate Europe's largest
-              Transpired Solar Collector, or SolarWall®, installation on a
-              single building. SolarWall® is widely recognised as one of the
-              most efficient and cost effective renewable systems available.
-            </p>
-          </section>
+          <div id="news-sections">
+            <p>Loading press releases…</p>
+          </div>
         </article>
       </div>
     </main>
 
     <!-- footer -->
+
     <footer class="site-footer">
       <div class="footer-inner">
         <div class="footer-top">
@@ -309,9 +92,9 @@
               <span class="footer-brand-name">Solar Air Heating</span>
             </a>
             <p class="footer-tagline">
-              A resource dedicated to raising awareness of solar air heating —
-              one of the most practical and underused renewable energy
-              technologies available today.
+              A resource dedicated to raising awareness of solar air heating one
+              of the most practical and underused renewable energy technologies
+              available today.
             </p>
           </div>
 
@@ -337,17 +120,9 @@
           <!-- Contact / Contribute -->
           <div>
             <p class="footer-col-heading">Get Involved</p>
-            <p class="footer-contact">
-              Know of a project, report, or installation worth featuring?
-            </p>
-            <p class="footer-contact">
-              <a href="mailto:contact@yourdomain.com"
-                >Submit a contribution &rarr;</a
-              >
-            </p>
             <p class="footer-contact" style="margin-top: 2rem">
-              Follow updates or share this resource with anyone working in
-              sustainable building design.
+              Share this resource with anyone working in sustainable building
+              design.
             </p>
           </div>
 
@@ -361,16 +136,25 @@
                 >
               </li>
               <li><a href="https://sahwia.org/">SAHWIA.org</a></li>
+              <li>
+                <a
+                  href="https://www.cagroup.co.uk/building-products/renewables-sustainable-solutions/transpired-solar-wall-collector-heating-system"
+                  >The CA Group Ltd. (UK)</a
+                >
+              </li>
             </ul>
           </div>
         </div>
+        <!-- /.footer-top -->
 
         <div class="footer-bottom">
           <p class="footer-copy">
-            &copy; 2025 Solar Air Heating. All rights reserved.
+            <!-- REPLACE year and name as needed -->
+            &copy; 2026 Solar Air Heating. All rights reserved.
           </p>
         </div>
       </div>
+      <!-- /.footer-inner -->
     </footer>
   </body>
 </html>
